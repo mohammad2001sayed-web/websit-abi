@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,6 +20,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
   </head>
   <body
     class="bg-linear-to-br from-space-dark via-slate-900 to-space-blue font-inter text-white"
@@ -47,7 +48,7 @@
       </div>
       <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
         <a
-          href="#"
+          href="#today-in-space"
           data-section="today-in-space"
           class="nav-link flex items-center space-x-3 px-3 py-2.5 bg-blue-500/10 text-blue-400 rounded-lg font-medium transition-colors"
         >
@@ -55,7 +56,7 @@
           <span>Today in Space</span>
         </a>
         <a
-          href="#"
+          href="#launches"
           data-section="launches"
           class="nav-link flex items-center space-x-3 px-3 py-2.5 text-slate-300 hover:bg-slate-800 rounded-lg font-medium transition-colors"
         >
@@ -63,7 +64,7 @@
           <span>Launches</span>
         </a>
         <a
-          href="#"
+          href="#planets"
           data-section="planets"
           class="nav-link flex items-center space-x-3 px-3 py-2.5 text-slate-300 hover:bg-slate-800 rounded-lg font-medium transition-colors"
         >
@@ -666,8 +667,8 @@
               class="planet-card bg-slate-800/50 border border-slate-700 rounded-2xl p-4 transition-all cursor-pointer group"
               data-planet-id="mercury"
               style="--planet-color: #eab308"
-              onmouseover="this.style.borderColor='#eab30880'"
-              onmouseout="this.style.borderColor='#334155'"
+              onmouseover="this.style.borderColor = '#eab30880'"
+              onmouseout="this.style.borderColor = '#334155'"
             >
               <div class="relative mb-3 h-24 flex items-center justify-center">
                 <img
@@ -684,8 +685,8 @@
               class="planet-card bg-slate-800/50 border border-slate-700 rounded-2xl p-4 transition-all cursor-pointer group"
               data-planet-id="venus"
               style="--planet-color: #f97316"
-              onmouseover="this.style.borderColor='#f9731680'"
-              onmouseout="this.style.borderColor='#334155'"
+              onmouseover="this.style.borderColor = '#f9731680'"
+              onmouseout="this.style.borderColor = '#334155'"
             >
               <div class="relative mb-3 h-24 flex items-center justify-center">
                 <img
@@ -702,8 +703,8 @@
               class="planet-card bg-slate-800/50 border border-slate-700 rounded-2xl p-4 transition-all cursor-pointer group"
               data-planet-id="earth"
               style="--planet-color: #3b82f6"
-              onmouseover="this.style.borderColor='#3b82f680'"
-              onmouseout="this.style.borderColor='#334155'"
+              onmouseover="this.style.borderColor = '#3b82f680'"
+              onmouseout="this.style.borderColor = '#334155'"
             >
               <div class="relative mb-3 h-24 flex items-center justify-center">
                 <img
@@ -720,8 +721,8 @@
               class="planet-card bg-slate-800/50 border border-slate-700 rounded-2xl p-4 transition-all cursor-pointer group"
               data-planet-id="mars"
               style="--planet-color: #ef4444"
-              onmouseover="this.style.borderColor='#ef444480'"
-              onmouseout="this.style.borderColor='#334155'"
+              onmouseover="this.style.borderColor = '#ef444480'"
+              onmouseout="this.style.borderColor = '#334155'"
             >
               <div class="relative mb-3 h-24 flex items-center justify-center">
                 <img
@@ -738,8 +739,8 @@
               class="planet-card bg-slate-800/50 border border-slate-700 rounded-2xl p-4 transition-all cursor-pointer group"
               data-planet-id="jupiter"
               style="--planet-color: #fb923c"
-              onmouseover="this.style.borderColor='#fb923c80'"
-              onmouseout="this.style.borderColor='#334155'"
+              onmouseover="this.style.borderColor = '#fb923c80'"
+              onmouseout="this.style.borderColor = '#334155'"
             >
               <div class="relative mb-3 h-24 flex items-center justify-center">
                 <img
@@ -756,8 +757,8 @@
               class="planet-card bg-slate-800/50 border border-slate-700 rounded-2xl p-4 transition-all cursor-pointer group"
               data-planet-id="saturn"
               style="--planet-color: #facc15"
-              onmouseover="this.style.borderColor='#facc1580'"
-              onmouseout="this.style.borderColor='#334155'"
+              onmouseover="this.style.borderColor = '#facc1580'"
+              onmouseout="this.style.borderColor = '#334155'"
             >
               <div class="relative mb-3 h-24 flex items-center justify-center">
                 <img
@@ -774,8 +775,8 @@
               class="planet-card bg-slate-800/50 border border-slate-700 rounded-2xl p-4 transition-all cursor-pointer group"
               data-planet-id="uranus"
               style="--planet-color: #06b6d4"
-              onmouseover="this.style.borderColor='#06b6d480'"
-              onmouseout="this.style.borderColor='#334155'"
+              onmouseover="this.style.borderColor = '#06b6d480'"
+              onmouseout="this.style.borderColor = '#334155'"
             >
               <div class="relative mb-3 h-24 flex items-center justify-center">
                 <img
@@ -792,8 +793,8 @@
               class="planet-card bg-slate-800/50 border border-slate-700 rounded-2xl p-4 transition-all cursor-pointer group"
               data-planet-id="neptune"
               style="--planet-color: #2563eb"
-              onmouseover="this.style.borderColor='#2563eb80'"
-              onmouseout="this.style.borderColor='#334155'"
+              onmouseover="this.style.borderColor = '#2563eb80'"
+              onmouseout="this.style.borderColor = '#334155'"
             >
               <div class="relative mb-3 h-24 flex items-center justify-center">
                 <img
