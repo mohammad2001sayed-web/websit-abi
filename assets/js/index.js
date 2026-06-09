@@ -28,6 +28,6 @@ links.forEach((link) => {
     link.classList.add("bg-blue-500/10", "text-blue-400");
 
     // اعرض السكشن المطلوب
-    showSection(link .getAttribute("data-section"));
+    showSection(link.dataset.section);
   });
 });
