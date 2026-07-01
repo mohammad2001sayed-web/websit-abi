@@ -380,3 +380,203 @@ async function getUpcomingLaunches() {
 }
 
 getUpcomingLaunches();
+
+
+
+
+//& =========================================================
+//& (4) Planets Section - Ultimate Engine with Dynamic Table
+//& =========================================================
+
+function initPlanetsSection() {
+  const planetCards = document.querySelectorAll(".planet-card");
+  const tableBody = document.getElementById("planet-comparison-tbody");
+  
+  // 1. قاعدة البيانات الكاملة والمطابقة لبيانات الكروت والجدول في ملف cd1501fa-04e7-43ac-9bf1-8f554078b0fa
+  const allPlanetsData = {
+    uranus: {
+      name: "Uranus", color: "#06b6d4", bgBadge: "bg-cyan-500/50 text-cyan-200", type: "Ice Giant",
+      distanceAU: "19.19", diameter: "50,724", massE: "14.536", orbitP: "84.0 years", moonsCount: "29",
+      description: "Uranus is the seventh planet from the Sun. Its name is a reference to the Greek god of the sky, Uranus. It has the third-largest planetary radius and fourth-largest planetary mass in the Solar System.",
+      distance: "2.87B km", radius: "25,362 km", mass: "8.681 × 10²⁵ kg", density: "1.27 g/cm³",
+      orbitalPeriod: "84 years", rotation: "17.2 hours", moons: "29", gravity: "8.69 m/s²",
+      discoveredBy: "William Herschel", discoveryDate: "March 13, 1781", bodyType: "Planet", volume: "6.833 × 10¹³ km³",
+      quickFacts: ["Mass: 8.681 × 10²⁵ kg", "Surface gravity: 8.69 m/s²", "Density: 1.270 g/cm³", "Axial tilt: 97.77°"],
+      perihelion: "2.74B km", aphelion: "3.00B km", eccentricity: "0.0463", inclination: "0.77°", axialTilt: "97.77°", temp: "-197°C", escape: "21.3 km/s"
+    },
+    neptune: {
+      name: "Neptune", color: "#2563eb", bgBadge: "bg-blue-500/50 text-blue-200", type: "Ice Giant",
+      distanceAU: "30.07", diameter: "49,244", massE: "17.148", orbitP: "164.8 years", moonsCount: "16",
+      description: "Neptune is the eighth and farthest-known solar planet from the Sun. In the Solar System, it is the fourth-largest planet by diameter, the third-most-massive planet, and the densest giant planet.",
+      distance: "4.50B km", radius: "24,622 km", mass: "1.024 × 10²⁶ kg", density: "1.64 g/cm³",
+      orbitalPeriod: "164.8 years", rotation: "16.1 hours", moons: "16", gravity: "11.15 m/s²",
+      discoveredBy: "Urbain Le Verrier", discoveryDate: "September 23, 1846", bodyType: "Planet", volume: "6.254 × 10¹³ km³",
+      quickFacts: ["Mass: 1.024 × 10²⁶ kg", "Surface gravity: 11.15 m/s²", "Density: 1.638 g/cm³", "Axial tilt: 28.32°"],
+      perihelion: "4.46B km", aphelion: "4.54B km", eccentricity: "0.0097", inclination: "1.77°", axialTilt: "28.32°", temp: "-201°C", escape: "23.5 km/s"
+    },
+    jupiter: {
+      name: "Jupiter", color: "#fb923c", bgBadge: "bg-purple-500/50 text-purple-200", type: "Gas Giant",
+      distanceAU: "5.20", diameter: "139,820", massE: "317.829", orbitP: "11.9 years", moonsCount: "101",
+      description: "Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass more than two and a half times that of all the other planets in the Solar System combined.",
+      distance: "778.5M km", radius: "69,911 km", mass: "1.898 × 10²⁷ kg", density: "1.33 g/cm³",
+      orbitalPeriod: "11.86 years", rotation: "9.9 hours", moons: "101", gravity: "24.79 m/s²",
+      discoveredBy: "Known since antiquity", discoveryDate: "Ancient times", bodyType: "Planet", volume: "1.431 × 10¹⁵ km³",
+      quickFacts: ["Mass: 1.898 × 10²⁷ kg", "Surface gravity: 24.79 m/s²", "Density: 1.326 g/cm³", "Axial tilt: 3.13°"],
+      perihelion: "740.5M km", aphelion: "816.6M km", eccentricity: "0.0489", inclination: "1.30°", axialTilt: "3.13°", temp: "-108°C", escape: "59.5 km/s"
+    },
+    mars: {
+      name: "Mars", color: "#ef4444", bgBadge: "bg-orange-500/50 text-orange-200", type: "Terrestrial",
+      distanceAU: "1.52", diameter: "6,779", massE: "0.107", orbitP: "1.9 years", moonsCount: "2",
+      description: "Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System. Often referred to as the 'Red Planet' due to the iron oxide prevalent on its surface.",
+      distance: "227.9M km", radius: "3,389 km", mass: "6.39 × 10²³ kg", density: "3.93 g/cm³",
+      orbitalPeriod: "687 days", rotation: "24.6 hours", moons: "2", gravity: "3.72 m/s²",
+      discoveredBy: "Known since antiquity", discoveryDate: "Ancient times", bodyType: "Planet", volume: "1.631 × 10¹¹ km³",
+      quickFacts: ["Mass: 6.39 × 10²³ kg", "Surface gravity: 3.72 m/s²", "Density: 3.933 g/cm³", "Axial tilt: 25.19°"],
+      perihelion: "206.6M km", aphelion: "249.2M km", eccentricity: "0.0934", inclination: "1.85°", axialTilt: "25.19°", temp: "-62°C", escape: "5.03 km/s"
+    },
+    mercury: {
+      name: "Mercury", color: "#eab308", bgBadge: "bg-orange-500/50 text-orange-200", type: "Terrestrial",
+      distanceAU: "0.39", diameter: "4,879", massE: "0.055", orbitP: "88 days", moonsCount: "0",
+      description: "Mercury is the smallest planet in our Solar System and the closest to the Sun. Its orbit around the Sun takes 87.97 Earth days, the shortest of all the Sun's planets.",
+      distance: "57.9M km", radius: "2,439 km", mass: "3.285 × 10²³ kg", density: "5.43 g/cm³",
+      orbitalPeriod: "88 days", rotation: "1,408 hours", moons: "0", gravity: "3.7 m/s²",
+      discoveredBy: "Known since antiquity", discoveryDate: "Ancient times", bodyType: "Planet", volume: "6.083 × 10¹⁰ km³",
+      quickFacts: ["Mass: 3.285 × 10²³ kg", "Surface gravity: 3.7 m/s²", "Density: 5.427 g/cm³", "Axial tilt: 0.034°"],
+      perihelion: "46.0M km", aphelion: "69.8M km", eccentricity: "0.2056", inclination: "7.00°", axialTilt: "0.034°", temp: "167°C", escape: "4.25 km/s"
+    },
+    saturn: {
+      name: "Saturn", color: "#facc15", bgBadge: "bg-purple-500/50 text-purple-200", type: "Gas Giant",
+      distanceAU: "9.54", diameter: "116,464", massE: "95.161", orbitP: "29.5 years", moonsCount: "285",
+      description: "Saturn is the sixth planet from the Sun and the second-largest in the Solar System. It is a gas giant with an average radius about nine times that of Earth, and is best known for its extensive ring system.",
+      distance: "1426.7M km", radius: "58,232 km", mass: "5.68336 × 10²⁶ kg", density: "0.69 g/cm³",
+      orbitalPeriod: "10759.22 days", rotation: "10.66 hours", moons: "285", gravity: "10.44 m/s²",
+      discoveredBy: "Known since antiquity", discoveryDate: "Ancient times", bodyType: "Planet", volume: "8.2713 × 10¹⁴ km³",
+      quickFacts: ["Mass: 5.68336 × 10²⁶ kg", "Surface gravity: 10.44 m/s²", "Density: 0.6971 g/cm³", "Axial tilt: 26.73°"],
+      perihelion: "1349.8M km", aphelion: "1503.5M km", eccentricity: "0.05650", inclination: "2.48°", axialTilt: "26.73°", temp: "-139°C", escape: "36.09 km/s"
+    },
+    earth: {
+      name: "Earth", color: "#3b82f6", bgBadge: "bg-orange-500/50 text-orange-200", type: "Terrestrial",
+      distanceAU: "1.00", diameter: "12,742", massE: "1.000", orbitP: "1.0 years", moonsCount: "1",
+      description: "Earth is the third planet from the Sun and the only astronomical object known to harbor life. About 29% of Earth's surface is land consisting of continents and islands, while 71% is covered with water.",
+      distance: "149.6M km", radius: "6,371 km", mass: "5.972 × 10²⁴ kg", density: "5.51 g/cm³",
+      orbitalPeriod: "365.25 days", rotation: "24 hours", moons: "1", gravity: "9.8 m/s²",
+      discoveredBy: "Known since antiquity", discoveryDate: "Ancient times", bodyType: "Planet", volume: "1.083 × 10¹² km³",
+      quickFacts: ["Mass: 5.972 × 10²⁴ kg", "Surface gravity: 9.8 m/s²", "Density: 5.514 g/cm³", "Axial tilt: 23.44°"],
+      perihelion: "147.1M km", aphelion: "152.1M km", eccentricity: "0.0167", inclination: "0.00°", axialTilt: "23.44°", temp: "15°C", escape: "11.19 km/s"
+    },
+    venus: {
+      name: "Venus", color: "#f97316", bgBadge: "bg-orange-500/50 text-orange-200", type: "Terrestrial",
+      distanceAU: "0.72", diameter: "12,104", massE: "0.815", orbitP: "225 days", moonsCount: "0",
+      description: "Venus is the second planet from the Sun. It is a terrestrial planet and is the closest in size and mass to Earth, often called Earth's twin, though it has a massive, toxic atmosphere.",
+      distance: "108.2M km", radius: "6,051 km", mass: "4.867 × 10²⁴ kg", density: "5.24 g/cm³",
+      orbitalPeriod: "225 days", rotation: "5,832 hours", moons: "0", gravity: "8.87 m/s²",
+      discoveredBy: "Known since antiquity", discoveryDate: "Ancient times", bodyType: "Planet", volume: "9.284 × 10¹¹ km³",
+      quickFacts: ["Mass: 4.867 × 10²⁴ kg", "Surface gravity: 8.87 m/s²", "Density: 5.243 g/cm³", "Axial tilt: 177.3°"],
+      perihelion: "107.5M km", aphelion: "108.9M km", eccentricity: "0.0067", inclination: "3.39°", axialTilt: "177.3°", temp: "464°C", escape: "10.36 km/s"
+    }
+  };
+
+  // 2. دالة بناء الجدول ديناميكياً بنفس الترتيب المظبوط في لقطة الشاشة
+  function buildComparisonTable() {
+    if (!tableBody) return;
+    tableBody.innerHTML = ""; // تصفير الهيكل القديم الثابت
+
+    // مصفوفة الترتيب المخصصة من الصورة (Uranus -> Neptune -> Jupiter -> Mars -> Mercury -> Saturn -> Earth -> Venus)
+    const order = ["uranus", "neptune", "jupiter", "mars", "mercury", "saturn", "earth", "venus"];
+
+    order.forEach(key => {
+      const p = allPlanetsData[key];
+      tableBody.innerHTML += `
+        <tr class="hover:bg-slate-800/30 transition-colors">
+          <td class="px-4 md:px-6 py-3 md:py-4 sticky left-0 bg-slate-800 z-10">
+            <div class="flex items-center space-x-2 md:space-x-3">
+              <div class="w-6 h-6 rounded-full flex-shrink-0" style="background-color: ${p.color}"></div>
+              <span class="font-semibold text-sm md:text-base whitespace-nowrap">${p.name}</span>
+            </div>
+          </td>
+          <td class="px-4 md:px-6 py-3 md:py-4 text-slate-300 text-sm whitespace-nowrap">${p.distanceAU}</td>
+          <td class="px-4 md:px-6 py-3 md:py-4 text-slate-300 text-sm whitespace-nowrap">${p.diameter}</td>
+          <td class="px-4 md:px-6 py-3 md:py-4 text-slate-300 text-sm whitespace-nowrap">${p.massE}</td>
+          <td class="px-4 md:px-6 py-3 md:py-4 text-slate-300 text-sm whitespace-nowrap">${p.orbitP}</td>
+          <td class="px-4 md:px-6 py-3 md:py-4 text-slate-300 text-sm whitespace-nowrap">${p.moonsCount}</td>
+          <td class="px-4 md:px-6 py-3 md:py-4 whitespace-nowrap">
+            <span class="px-2 py-1 rounded text-xs ${p.bgBadge}">${p.type}</span>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  // 3. دالة تحديث الكروت العلوية بالتفاصيل الكاملة
+  function updatePlanetUI(planetId) {
+    const data = allPlanetsData[planetId];
+    if (!data) return;
+
+    const nameEl = document.getElementById("planet-detail-name");
+    const descEl = document.getElementById("planet-detail-description");
+    const imgEl = document.getElementById("planet-detail-image");
+
+    if (nameEl) nameEl.innerText = data.name;
+    if (descEl) descEl.innerText = data.description;
+    if (imgEl) {
+      imgEl.src = `./assets/images/${planetId}.png`;
+      imgEl.onerror = function() {
+        this.src = `https://img.icons8.com/plasticine/200/${planetId}.png`;
+      };
+    }
+
+    const setTxt = (id, txt) => { const el = document.getElementById(id); if(el) el.innerHTML = txt; };
+    
+    setTxt("planet-distance", data.distance);
+    setTxt("planet-radius", data.radius);
+    setTxt("planet-mass", data.mass);
+    setTxt("planet-density", data.density);
+    setTxt("planet-orbital-period", data.orbitalPeriod);
+    setTxt("planet-rotation", data.rotation);
+    setTxt("planet-moons", data.moons);
+    setTxt("planet-gravity", data.gravity);
+
+    setTxt("planet-discoverer", data.discoveredBy);
+    setTxt("planet-discovery-date", data.discoveryDate);
+    setTxt("planet-body-type", data.bodyType);
+    setTxt("planet-volume", data.volume);
+
+    const factsList = document.getElementById("planet-facts");
+    if (factsList) {
+      factsList.innerHTML = data.quickFacts.map(fact => `
+        <li class="flex items-start">
+          <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+          <span class="text-slate-300">${fact}</span>
+        </li>
+      `).join('');
+    }
+
+    setTxt("planet-perihelion", data.perihelion);
+    setTxt("planet-aphelion", data.aphelion);
+    setTxt("planet-eccentricity", data.eccentricity);
+    setTxt("planet-inclination", data.inclination);
+    setTxt("planet-axial-tilt", data.axialTilt);
+    setTxt("planet-temp", data.temp);
+    setTxt("planet-escape", data.escape);
+  }
+
+  // ربط الأكشن بضغط الكروت
+  planetCards.forEach(card => {
+    card.addEventListener("click", function () {
+      planetCards.forEach(c => c.style.borderColor = "#334155");
+      
+      const planetColor = this.getAttribute("style").match(/--planet-color:\s*(#[a-fA-A0-9]+)/)[1];
+      this.style.borderColor = planetColor;
+      
+      const planetId = this.getAttribute("data-planet-id").trim().toLowerCase();
+      updatePlanetUI(planetId);
+    });
+  });
+
+  // بناء الجدول فوراً وتنشيط كوكب زحل افتراضياً لمطابقة اللقطة تماماً
+  buildComparisonTable();
+  updatePlanetUI("saturn");
+}
+
+// تشغيل محرك الكواكب
+initPlanetsSection();
